@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Замовлення оформлено{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f4f4f4;
+        color: #333;
+        padding-top: 50px;
+    }
+    h1 {
+        text-align: center;
+        color: #4CAF50; 
+    }
+    p {
+        text-align: center;
+        font-size: 18px;
+        color: #666;
+    }
+    a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 20px auto;
+        background-color: #218838;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+    }
+    a:hover {
+        background-color: #218838;
+    }
+</style>
+<div class="confirmation">
+    <h1>Ваше замовлення оформлено!</h1>
+    <p>Номер замовлення: {{ order.id }}</p>
+    <p>Загальна сума: {{ order.total_price }} грн</p>
+    <a href="{% url 'list_clothing' %}">Повернутися на головну сторінку</a>
+</div>
+{% endblock %}
+

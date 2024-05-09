@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    a {
+        color: #f00;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    .total-price {
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 20%;
+    }
+    .checkout-btn {
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+        padding: 10px;
+        text-align: center;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .checkout-btn:hover {
+        background-color: #45a049;
+    }
+</style>
+<h1>Ваша корзина</h1>
+<table>
+    <tr>
+        <th>Товар</th>
+        <th>Кількість</th>
+        <th>Ціна за одиницю</th>
+        <th>Загальна ціна</th>
+    </tr>
+    {% for item in cart_items %}
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }} грн</td>
+        <td>{{ item.total_price }} грн <a href="{% url 'remove_from_cart' item.id %}">Видалити товар</a></td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="4">Корзина порожня</td>
+    </tr>
+    {% endfor %}
+</table>
+<p class="total-price">Загальна вартість: {{ total_price }} грн</p>
+<a href="{% url 'place_order' %}" class="checkout-btn">Оформити замовлення</a>
+{% endblock %}

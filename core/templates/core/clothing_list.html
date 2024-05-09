@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Список одягу{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    form {
+        text-align: center;
+        margin: 20px 0;
+    }
+    select {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+        max-width: 600px;
+        margin: auto;
+    }
+    li {
+        background-color: #f8f9fa;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    a {
+        display: block;
+        text-align: center;
+        padding: 8px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 5px 0;
+    }
+    a:hover {
+        background-color: #28a745;
+    }
+</style>
+<h1>Список одягу</h1>
+<form method="get">
+    <select name="category" onchange="this.form.submit()">
+        <option value="">Всі категорії</option>
+        <option value="Взуття" {% if current_category == "Взуття" %}selected{% endif %}>Взуття</option>
+        <option value="Штани" {% if current_category == "Штани" %}selected{% endif %}>Штани</option>
+        <option value="Верхній одяг" {% if current_category == "Верхній одяг" %}selected{% endif %}>Верхній одяг</option>
+    </select>
+</form>
+
+<ul>
+    {% for clothing in clothing_list %} 
+        <li>
+            {{ clothing.name }} - {{ clothing.description }} - {{ clothing.category }} - {{ clothing.price }} грн
+            <a href="{% url 'clothing_detail' clothing.id %}">Переглянути детальну інформацію</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

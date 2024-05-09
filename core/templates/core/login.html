@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Вхід в систему{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        color: #333;
+        padding-top: 50px;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    form {
+        max-width: 300px;
+        margin: auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    label {
+        margin-top: 10px;
+        display: block;
+        color: #666;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745; 
+        color: white;
+        border: none;
+        border-radius: 4px;
+        margin-top: 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #218838; 
+    }
+</style>
+<h1>Вхід в систему</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Ім'я користувача або email:</label>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required><br>
+    <button type="submit">Увійти</button>
+</form>
+{% endblock %}
